@@ -32,7 +32,7 @@ export const searchMovies = async (query, page = 1) => {
       },
     });
 
-    return response.data.results;
+    return response.data;
   } catch (error) {
     console.error("Search error:", error);
     return [];

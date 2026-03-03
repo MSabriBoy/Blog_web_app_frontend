@@ -1,14 +1,16 @@
 import { useEffect, useState, useRef } from "react";
-import { fetchPopularMovies, searchMovies } from "./services/tmdb";
-import MovieCard from "./components/MovieCard";
-import useDebounce from "./hooks/useDebounce";
+import { fetchPopularMovies, searchMovies } from "../services/tmdb";
+import MovieCard from "../components/MovieCard";
+import useDebounce from "../hooks/useDebounce";
 
 function Home() {
   const observerRef = useRef(null);
 
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
+
 
   const [initialLoading, setInitialLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -28,16 +30,16 @@ function Home() {
       setLoadingMore(true);
     }
 
-      let data;
+      let response;
 
       if (debouncedSearch.trim() === "") {
-        data = await fetchPopularMovies(page);
+        response = await fetchPopularMovies(page);
       } else {
-        data = await searchMovies(debouncedSearch, page);
+        response = await searchMovies(debouncedSearch, page);
       }
-
+setTotalPages(response.total_pages);
       setMovies((prev) =>
-        page === 1 ? data : [...prev, ...data]
+        page === 1 ? response.results : [...prev, ...response.results]
       );
        setInitialLoading(false);
     setLoadingMore(false);
@@ -52,8 +54,10 @@ function Home() {
 
     observerRef.current = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting && !loadingMore && !initialLoading) {
-          setPage((prev) => prev + 1);
+        if (entries[0].isIntersecting && !loadingMore && !initialLoading&& page < totalPages) {
+      
+   setPage(prev => prev + 1);
+
         }
       },
       { threshold: 0.5 }
