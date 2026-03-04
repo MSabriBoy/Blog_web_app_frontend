@@ -1,12 +1,28 @@
-import { Routes, Route, Link } from "react-router-dom";
-import { useState } from "react";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { FiSearch } from "react-icons/fi";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
+ const navigate = useNavigate();
 
+   useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === "Escape") {
+        setSearchTerm("");   // clear search
+        navigate("/");       // go to homepage
+      }
+    };
+
+    window.addEventListener("keydown", handleEsc);
+
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+    };
+  }, [navigate]);
+  
   return (
     <div className="bg-black min-h-screen text-white">
 <nav className="sticky top-0 z-50 flex justify-between items-center p-6 border-b border-gray-800 bg-black/80 backdrop-blur">
