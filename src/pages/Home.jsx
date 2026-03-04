@@ -1,16 +1,17 @@
 import { useEffect, useState, useRef } from "react";
 import { fetchPopularMovies, searchMovies } from "../services/tmdb";
+import { FiSearch } from "react-icons/fi";
 import MovieCard from "../components/MovieCard";
 import useDebounce from "../hooks/useDebounce";
 
-function Home() {
-  const observerRef = useRef(null);
+
+function Home({searchTerm}) {
   const triggerRef = useRef(null);
 
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [searchTerm, setSearchTerm] = useState("");
+
 
 
   const [initialLoading, setInitialLoading] = useState(true);
@@ -20,6 +21,7 @@ function Home() {
 
 useEffect(() => {
   setPage(1);
+  setMovies([]);
 }, [debouncedSearch]);
 
   useEffect(() => {
@@ -83,25 +85,24 @@ useEffect(() => {
   observer.observe(triggerRef.current);
 
   return () => observer.disconnect();
-}, [loadingMore, initialLoading, page, totalPages]);
+}, [loadingMore, initialLoading, page, totalPages, movies.length]);
 
   return (
     <div className="bg-black min-h-screen text-white p-6">
-      <h1 className="text-3xl font-bold mb-6 text-center">
-        🎬 CineStream
-      </h1>
+    {/* <div className="flex justify-between items-center mb-8">
 
-      <div className="flex justify-center mb-8">
-        <input
-          type="search"
-          placeholder="Search movies..."
-          className="w-full max-w-md px-4 py-2 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-red-500"
-          value={searchTerm}
-          onChange={(e) =>setSearchTerm(e.target.value)
-            
-          }
-        />
-      </div>
+ <div className="relative">
+  <FiSearch className="absolute left-3 top-3 text-gray-400" />
+
+  <input
+    type="search"
+    placeholder="Search movies..."
+    className="pl-10 w-72 px-4 py-2 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-red-500"
+    value={searchTerm}
+    onChange={(e) => setSearchTerm(e.target.value)}
+  />
+</div>
+</div> */}
   {/* Initial Big Loader */}
   {initialLoading && page === 1 && (
     <p className="text-center mt-10 text-gray-400">
