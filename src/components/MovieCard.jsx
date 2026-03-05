@@ -34,7 +34,7 @@ const MovieCard = ({ movie }) => {
                 />
             ) : (
                 <div className="w-full h-72 flex items-center justify-center bg-gray-700 text-white">
-                    No Image
+                    No Image Available
                 </div>
             )}
 

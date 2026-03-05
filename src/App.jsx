@@ -11,8 +11,8 @@ function App() {
    useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === "Escape") {
-        setSearchTerm("");   // clear search
-        navigate("/");       // go to homepage
+        setSearchTerm("");   
+        navigate("/");       
       }
     };
 
@@ -22,7 +22,7 @@ function App() {
       window.removeEventListener("keydown", handleEsc);
     };
   }, [navigate]);
-  
+
   return (
     <div className="bg-black min-h-screen text-white">
 <nav className="sticky top-0 z-50 flex justify-between items-center p-6 border-b border-gray-800 bg-black/80 backdrop-blur">

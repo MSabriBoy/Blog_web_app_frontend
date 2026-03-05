@@ -1,9 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { fetchPopularMovies, searchMovies } from "../services/tmdb";
-import { FiSearch } from "react-icons/fi";
 import MovieCard from "../components/MovieCard";
 import useDebounce from "../hooks/useDebounce";
-
 
 function Home({searchTerm}) {
   const triggerRef = useRef(null);
@@ -11,8 +9,6 @@ function Home({searchTerm}) {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-
-
 
   const [initialLoading, setInitialLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -89,21 +85,7 @@ useEffect(() => {
 
   return (
     <div className="bg-black min-h-screen text-white p-6">
-    {/* <div className="flex justify-between items-center mb-8">
 
- <div className="relative">
-  <FiSearch className="absolute left-3 top-3 text-gray-400" />
-
-  <input
-    type="search"
-    placeholder="Search movies..."
-    className="pl-10 w-72 px-4 py-2 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-red-500"
-    value={searchTerm}
-    onChange={(e) => setSearchTerm(e.target.value)}
-  />
-</div>
-</div> */}
-  {/* Initial Big Loader */}
   {initialLoading && page === 1 && (
     <p className="text-center mt-10 text-gray-400">
       Loading movies...
@@ -114,7 +96,7 @@ useEffect(() => {
     No movies found.
   </p>
 )}
-      {/* Grid ALWAYS stays */}
+     
       <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {movies.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
@@ -122,7 +104,6 @@ useEffect(() => {
      
       </div>
 
-      {/* Bottom Loading Indicator */}
       {loadingMore && movies.length > 0 && (
     <p className="text-center mt-6 text-gray-400">
       Loading more movies...
