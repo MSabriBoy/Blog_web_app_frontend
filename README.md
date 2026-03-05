@@ -35,6 +35,14 @@ The project integrates the **TMDB (The Movie Database) API** and demonstrates mo
 **API**
 - TMDB (The Movie Database)
 
+## 🔑 Environment Variables
+
+1. Create a .env file in the root directory and add your TMDB API key:
+```bash 
+VITE_TMDB_KEY=your_tmdb_api_key
+```
+2. You can get an API key from: [Visit TMDB](https://www.themoviedb.org/)
+
 ## ⚙️ Installation
 
 1. Clone the repository:
@@ -54,12 +62,3 @@ npm install
 ```bash
 npm run dev
 ```
-## 🔑 Environment Variables
-
-1. Create a .env file in the root directory and add your TMDB API key:
-```bash 
-VITE_TMDB_KEY=your_tmdb_api_key
-```
-2. You can get an API key from: [Visit TMDB](https://www.themoviedb.org/)
-
-
