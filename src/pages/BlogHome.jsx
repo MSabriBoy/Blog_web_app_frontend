@@ -40,39 +40,70 @@ function BlogHome() {
     getPosts();
   };
 
-  return (
-    <div style={{ padding: "20px" }}>
-      <h1>Blog App</h1>
+return (
+  <div className="min-h-screen bg-gray-950 text-white px-6 py-10">
 
-      {/* FORM */}
-      <input
-        placeholder="Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <br /><br />
+    <div className="max-w-3xl mx-auto">
 
-      <textarea
-        placeholder="Content"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-      />
-      <br /><br />
+      <h1 className="text-3xl font-bold mb-8 text-center">
+        📝 Blog Dashboard
+      </h1>
 
-      <button onClick={addPost}>Add Post</button>
+      {/* FORM CARD */}
+      <div className="bg-gray-900 p-6 rounded-xl shadow-lg mb-10 border border-gray-800">
+        <h2 className="text-xl font-semibold mb-4">Create Post</h2>
 
-      <hr />
+        <input
+          className="w-full mb-3 px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter title..."
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
 
-      {/* POSTS */}
-      {posts.map((post) => (
-        <div key={post._id} style={{ border: "1px solid gray", margin: "10px", padding: "10px" }}>
-          <h2>{post.title}</h2>
-          <p>{post.content}</p>
-          <button onClick={() => deletePost(post._id)}>Delete</button>
-        </div>
-      ))}
+        <textarea
+          className="w-full mb-4 px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Write content..."
+          rows="4"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+        />
+
+        <button
+          onClick={addPost}
+          className="w-full bg-blue-600 hover:bg-blue-700 transition px-4 py-2 rounded-lg font-semibold"
+        >
+          ➕ Add Post
+        </button>
+      </div>
+
+      {/* POSTS LIST */}
+      <div className="space-y-6">
+        {posts.map((post) => (
+          <div
+            key={post._id}
+            className="bg-gray-900 p-5 rounded-xl border border-gray-800 shadow-md hover:shadow-lg transition"
+          >
+            <h2 className="text-xl font-semibold mb-2">
+              {post.title}
+            </h2>
+
+            <p className="text-gray-300 mb-4">
+              {post.content}
+            </p>
+
+            <button
+              onClick={() => deletePost(post._id)}
+              className="bg-red-600 hover:bg-red-700 transition px-4 py-2 rounded-lg text-sm"
+            >
+              🗑 Delete
+            </button>
+          </div>
+        ))}
+      </div>
+
     </div>
-  );
+  </div>
+);
 }
 
 export default BlogHome;
