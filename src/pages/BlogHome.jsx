@@ -126,10 +126,10 @@ function BlogHome() {
                     />
 
                     <button
-                        disabled={loading}
-                        className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-50 px-4 py-2 rounded-lg font-semibold"
+                        onClick={addPost}
+                        className="w-full bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold"
                     >
-                        {loading ? "Adding..." : "➕ Add Post"}
+                        ➕ Add Post
                     </button>
                 </div>
 
