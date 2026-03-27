@@ -129,7 +129,7 @@ function BlogHome() {
                         onClick={addPost}
                         className="w-full bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold"
                     >
-                        ➕ Add Post
+                        Add Post
                     </button>
                 </div>
 
