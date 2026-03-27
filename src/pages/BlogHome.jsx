@@ -136,7 +136,7 @@ function BlogHome() {
                 {/* POSTS LIST */}
                 <div className="space-y-6">
 
-                    {posts.length === 0 && (
+                    {!loading && !error && posts.length === 0 && (
                         <p className="text-center text-gray-400">
                             No posts yet. Create one 🚀
                         </p>
