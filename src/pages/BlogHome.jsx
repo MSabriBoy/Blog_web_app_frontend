@@ -12,7 +12,7 @@ function BlogHome() {
         try {
             setLoading(true);
 
-            const res = await fetch("http://localhost:5000/posts");
+            const res = await fetch("https://blog-web-app-backend-q2l3.onrender.com/posts");
 
             if (!res.ok) {
                 throw new Error("Server error");
@@ -43,7 +43,7 @@ function BlogHome() {
             });
             return;
         }
-        await fetch("http://localhost:5000/posts", {
+        await fetch("https://blog-web-app-backend-q2l3.onrender.com/posts", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -65,7 +65,7 @@ function BlogHome() {
 
     //DELETE post
     const deletePost = async (id) => {
-        await fetch(`http://localhost:5000/posts/${id}`, {
+        await fetch(`https://blog-web-app-backend-q2l3.onrender.com/posts/${id}`, {
             method: "DELETE"
         });
 
